@@ -19,12 +19,15 @@ pub struct IJVMFile {
     pub text: Vec<u8>
 }
 
-pub fn init_ijvm(path: String) -> IJVMFile {
+pub fn parse_ijvm(path: String) -> IJVMFile {
     let mut file = std::fs::File::open(path).unwrap();
     let mut buf = Vec::new();
     file.read_to_end(&mut buf).unwrap();
     let mut cursor = Cursor::new(&buf);
     let ijvmfile = IJVMFile::read(&mut cursor).unwrap();
+    if ijvmfile.magic != 0x1DEADFAD {
+        panic!("Invalid File: Incorrect Magic Number");
+    }
     ijvmfile
 }
 

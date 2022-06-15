@@ -1,7 +1,7 @@
 pub mod file;
 
 use std::{env::args};
-use crate::file::{init_ijvm, print_ijvm};
+use crate::file::{parse_ijvm, print_ijvm};
 
 fn main(){
     let args:Vec<String> = args().collect();
@@ -9,7 +9,7 @@ fn main(){
         println!("Usage: {} <path>", args[0]);
         return;
     }
-    let ijvm = init_ijvm(args[1].clone());
+    let ijvm = parse_ijvm(args[1].clone());
     print_ijvm(&ijvm);
 }
 
