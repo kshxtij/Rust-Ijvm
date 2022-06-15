@@ -12,3 +12,6 @@ fn main(){
     let ijvm = init_ijvm(args[1].clone());
     print_ijvm(&ijvm);
 }
+
+#[cfg(test)]
+mod test;
