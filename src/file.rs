@@ -4,19 +4,19 @@ use std::{io::Read, fmt::Debug};
 #[derive(BinRead, Debug)]
 pub struct IJVMFile {
     #[br(big)]
-    magic: u32,
+    pub magic: u32,
     #[br(big)]
-    constant_pool_origin: u32,
+    pub constant_pool_origin: u32,
     #[br(big)]
-    constant_pool_size: u32,
+    pub constant_pool_size: u32,
     #[br(count = constant_pool_size/4, big)]
-    constants: Vec<i32>,
+    pub constants: Vec<i32>,
     #[br(big)]
-    text_pool_origin: u32,
+    pub text_pool_origin: u32,
     #[br(big)]
-    text_pool_size: u32,
-    #[br(count = text_pool_size/2)]
-    text: Vec<u8>
+    pub text_pool_size: u32,
+    #[br(count = text_pool_size)]
+    pub text: Vec<u8>
 }
 
 pub fn init_ijvm(path: String) -> IJVMFile {
